@@ -12,6 +12,8 @@
 
 A pocket-sized Bluetooth LE remote for the original M5Stick (80×160 screen). It shows the camera's **live timecode** and starts or stops **recording** with one press. Small sibling of [MagicPilot Remote](https://github.com/KenFilms/MagicPilot_Remote), whose Bluetooth code it is based on.
 
+![MagicPilot Remote Stick Overview](images/MagicPilot_Remote_Stick_Overview.jpg)
+
 ## 🕹 Buttons
 
 | Screen | Button | Action |
