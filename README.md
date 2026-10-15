@@ -42,11 +42,19 @@ Put the camera in Bluetooth pairing mode, press **A** on the stick, then enter t
 
 Install Python 3 and PlatformIO Core or the PlatformIO VS Code extension, connect one supported Stick with a USB data cable, close serial monitors, and run from the project folder:
 
+**macOS and Linux:**
+
 ```sh
 python3 flash.py
 ```
 
-On Windows, use `py flash.py`. The helper finds PlatformIO (including the VS Code extension's default installation), reads the chip type with esptool, then builds and uploads only the matching environment. The display layout adapts to the screen size. The first run downloads the required tools and libraries.
+**Windows:**
+
+```sh
+py flash.py
+```
+
+The helper finds PlatformIO (including the VS Code extension's default installation), reads the chip type with esptool, then builds and uploads only the matching environment. The display layout adapts to the screen size. The first run downloads the required tools and libraries.
 
 The probe resets the Stick into download mode. On StickS3, the factory firmware may require manual entry first:
 
