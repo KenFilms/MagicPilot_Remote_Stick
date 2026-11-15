@@ -1,6 +1,6 @@
 {
   "name": "MagicPilot Remote Stick",
-  "version": "v1.0.0-3-gb403d4c-dirty",
+  "version": "v1.1.0",
   "new_install_improv_wait_time": 0,
   "builds": [
     {
