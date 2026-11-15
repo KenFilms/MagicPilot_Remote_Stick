@@ -12,6 +12,8 @@
 
 A pocket-sized Bluetooth LE remote for the original M5StickC (80×160 screen, ESP32) and M5Stack StickS3 (135×240 screen, ESP32-S3). It shows the camera's **live timecode** and starts or stops **recording** with one press. Small sibling of [MagicPilot Remote](https://github.com/KenFilms/MagicPilot_Remote), whose Bluetooth code it is based on.
 
+[![Install MagicPilot Remote Stick from your browser, in Chrome, Edge or Firefox, onto an M5StickC or StickS3](images/install-button.svg)](https://kenfilms.github.io/MagicPilot_Remote_Stick/#install)
+
 **⚡ Easy install: [flash your Stick from the browser](https://kenfilms.github.io/MagicPilot_Remote_Stick/#install)**. No tools needed, just desktop Chrome, Edge or Firefox and a USB cable. [More install options](#-install-without-building)
 
 ![MagicPilot Remote Stick on the M5StickS3: buttons, ports and screen layout](images/MagicPilot_Remote_Stick_Layout.png)
@@ -42,7 +44,7 @@ Put the camera in Bluetooth pairing mode, press **A** on the stick, then enter t
 
 ## ⚡ Install without building
 
-Open the **[browser installer](https://kenfilms.github.io/MagicPilot_Remote_Stick/#install)** in desktop Chrome, Edge or Firefox, connect the Stick with a USB data cable, click **Install on a connected Stick**, and pick its port. The installer reads the chip and writes the matching firmware. You don't need Python or PlatformIO. On a StickS3 with factory firmware, first hold the side reset button until the internal green LED flashes.
+Open the **[browser installer](https://kenfilms.github.io/MagicPilot_Remote_Stick/#install)** in desktop Chrome, Edge or Firefox, connect the Stick with a USB data cable, click **Install from your browser**, and pick its port. The installer reads the chip and writes the matching firmware. You don't need Python or PlatformIO. On a StickS3 with factory firmware, first hold the side reset button until the internal green LED flashes.
 
 The same images can be downloaded from [`docs/install/`](docs/install/). Each is a single file written at address `0x0`, for example with esptool:
 
