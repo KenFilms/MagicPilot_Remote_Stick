@@ -19,7 +19,7 @@
   <meta property="og:image" content="https://kenfilms.github.io/MagicPilot_Remote_Stick/images/social-preview.jpg">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="640">
-  <meta property="og:image:alt" content="MagicPilot Remote Stick on an M5StickS3 showing a red recording timecode, with its buttons and ports labelled">
+  <meta property="og:image:alt" content="Drawing of the MagicPilot Remote Stick on an M5StickS3, its screen showing a red recording timecode">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MagicPilot Remote Stick – Timecode &amp; Record Button for Blackmagic Cameras">
@@ -37,7 +37,7 @@
         "alternateName": ["MagicPilot Stick", "MagicPilot_Remote_Stick"],
         "description": "Open-source Bluetooth LE remote firmware for Blackmagic Pocket Cinema Cameras that shows the camera's live timecode and starts or stops recording, running on the original M5StickC (ESP32) and the M5Stack StickS3 (ESP32-S3).",
         "url": "https://kenfilms.github.io/MagicPilot_Remote_Stick/",
-        "downloadUrl": "https://github.com/KenFilms/MagicPilot_Remote_Stick",
+        "downloadUrl": "https://kenfilms.github.io/MagicPilot_Remote_Stick/#install",
         "applicationCategory": "MultimediaApplication",
         "applicationSubCategory": "Camera remote control",
         "operatingSystem": "ESP32 / ESP32-S3 (M5StickC, M5Stack StickS3)",
@@ -52,7 +52,8 @@
           "Start and stop recording with one button",
           "Switch between timecode and the camera's clip counter",
           "Direct Bluetooth LE pairing with the camera's 6-digit PIN",
-          "Automatic ESP32 / ESP32-S3 detection when flashing"
+          "Automatic ESP32 / ESP32-S3 detection when flashing",
+          "Browser installer for Chrome, Edge and Firefox, no build tools needed"
         ]
       },
       {
@@ -112,6 +113,9 @@
     .lead { font-size: 1.15rem; color: var(--muted); max-width: 720px; margin: 0 auto 24px; }
     .btn { display: inline-block; margin: 6px; padding: 12px 22px; border-radius: 8px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }
     .btn.secondary { background: transparent; border: 1px solid var(--accent); color: var(--text); }
+    button.btn { border: 0; font: inherit; font-weight: 600; cursor: pointer; margin: 6px 0; }
+    .notice { background: var(--panel); border: 1px solid #2a2a50; border-radius: 8px; padding: 12px 16px; color: var(--muted); }
+    esp-web-install-button:not(:defined) .notice { display: none; }
     img { max-width: 100%; height: auto; border-radius: 12px; display: block; }
     figure { margin: 32px 0; }
     figure a { display: block; }
@@ -135,7 +139,8 @@
     <h1>MagicPilot Remote Stick: Timecode &amp; <span class="rec">Record</span> Button for Your Blackmagic Camera</h1>
     <p class="tagline">🎬 Timecode and record button for your Blackmagic camera, on a tiny M5Stick.</p>
     <p class="lead">A pocket-sized <strong>Bluetooth LE</strong> remote for the original <strong>M5StickC</strong> and the <strong>M5Stack StickS3</strong>. It shows the camera's <strong>live timecode</strong> and starts or stops <strong>recording</strong> with one press. No phone, no app.</p>
-    <a class="btn" href="https://github.com/KenFilms/MagicPilot_Remote_Stick" target="_blank" rel="noopener">View on GitHub</a>
+    <a class="btn" href="#install">Install in your browser</a>
+    <a class="btn secondary" href="https://github.com/KenFilms/MagicPilot_Remote_Stick" target="_blank" rel="noopener">View on GitHub</a>
     <a class="btn secondary" href="https://github.com/KenFilms/MagicPilot_Remote_Stick#-build-and-flash" target="_blank" rel="noopener">Build &amp; flash guide</a>
   </header>
 
@@ -156,7 +161,7 @@
         <div class="card"><h3>🎞️ Clip counter</h3><p>Press B to switch to the camera's clip counter, which keeps its last value after you stop.</p></div>
         <div class="card"><h3>🔗 Direct Bluetooth LE</h3><p>Pairs with the camera using its 6-digit PIN. No phone, tablet, Wi-Fi or app.</p></div>
         <div class="card"><h3>📟 Two Sticks</h3><p>Runs on the original M5StickC and the M5Stack StickS3; the layout adapts to the screen.</p></div>
-        <div class="card"><h3>⚡ One-command flashing</h3><p><code>flash.py</code> detects ESP32 or ESP32-S3 and uploads the matching build.</p></div>
+        <div class="card"><h3>⚡ Easy install</h3><p>Install from Chrome, Edge or Firefox, or run <code>flash.py</code>. Both detect ESP32 or ESP32-S3 and write the matching build.</p></div>
       </div>
     </section>
 
@@ -207,9 +212,33 @@
       </ol>
     </section>
 
+    <section id="install">
+      <h2>Install from your browser</h2>
+      <p>No Python or PlatformIO needed. In desktop <strong>Chrome</strong>, <strong>Edge</strong> or <strong>Firefox</strong>, connect one supported Stick with a USB data cable and close any serial monitors. Click the button and choose the Stick's port. The installer reads the chip and writes the matching firmware: ESP32 for the M5StickC, ESP32-S3 for the StickS3.</p>
+      <esp-web-install-button manifest="install/manifest.json">
+        <button slot="activate" class="btn">Install on a connected Stick</button>
+        <p slot="unsupported" class="notice">This browser can't connect to USB serial devices. Open this page in desktop Chrome, Edge or Firefox, or download a firmware file below.</p>
+        <p slot="not-allowed" class="notice">The installer only works when this page is opened over HTTPS.</p>
+      </esp-web-install-button>
+      <ul>
+        <li><strong>StickS3 with factory firmware:</strong> if no port appears or the connection fails, hold the side reset button until the internal green LED flashes, then click the button again.</li>
+        <li>Installing clears a saved camera pairing. Afterwards, press <strong>A</strong> and pair again with the camera's PIN.</li>
+      </ul>
+      <details>
+        <summary>Download the firmware files</summary>
+        <p>Each file is a complete image, written at address <code>0x0</code>:</p>
+        <ul>
+          <li><a href="install/MagicPilot_Remote_Stick-m5stick-c.bin" download>MagicPilot_Remote_Stick-m5stick-c.bin</a>: original M5StickC (ESP32)</li>
+          <li><a href="install/MagicPilot_Remote_Stick-m5stick-s3.bin" download>MagicPilot_Remote_Stick-m5stick-s3.bin</a>: M5Stack StickS3 (ESP32-S3)</li>
+        </ul>
+        <p>For example, with <a href="https://github.com/espressif/esptool" target="_blank" rel="noopener">esptool</a>:</p>
+        <pre><code>esptool.py write_flash 0x0 MagicPilot_Remote_Stick-m5stick-s3.bin</code></pre>
+      </details>
+    </section>
+
     <section id="flash">
-      <h2>Build and flash</h2>
-      <p>Install Python 3 and PlatformIO (Core or the VS Code extension), connect one supported Stick with a USB data cable, close any serial monitors, and run from the project folder:</p>
+      <h2>Build and flash from source</h2>
+      <p>To build the firmware yourself, install Python 3 and PlatformIO (Core or the VS Code extension), connect one supported Stick with a USB data cable, close any serial monitors, and run from the project folder:</p>
       <p><strong>macOS and Linux:</strong></p>
       <pre><code>python3 flash.py</code></pre>
       <p><strong>Windows:</strong></p>
@@ -248,5 +277,6 @@
     <p>MagicPilot is an independent open-source project and is not affiliated with, endorsed by, or sponsored by Blackmagic Design Pty. Ltd. Blackmagic Design, Blackmagic Pocket Cinema Camera, BMPCC, and related names and trademarks are the property of Blackmagic Design Pty. Ltd.</p>
     <p>© KenFilms · <a href="https://github.com/KenFilms/MagicPilot_Remote_Stick" target="_blank" rel="noopener">github.com/KenFilms/MagicPilot_Remote_Stick</a> · Bluetooth code from <a href="https://kenfilms.github.io/MagicPilot_Remote/" target="_blank" rel="noopener">MagicPilot Remote</a></p>
   </footer>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10.4.0/dist/web/install-button.js?module"></script>
 </body>
 </html>

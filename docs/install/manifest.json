@@ -1,0 +1,25 @@
+{
+  "name": "MagicPilot Remote Stick",
+  "version": "v1.0.0-3-gb403d4c-dirty",
+  "new_install_improv_wait_time": 0,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "MagicPilot_Remote_Stick-m5stick-c.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "MagicPilot_Remote_Stick-m5stick-s3.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}

@@ -38,6 +38,18 @@ StickS3 flashing was verified on physical hardware on **2026-10-15**. Camera pai
 
 Put the camera in Bluetooth pairing mode, press **A** on the stick, then enter the 6-digit PIN shown on the camera.
 
+## ⚡ Install without building
+
+Open the **[browser installer](https://kenfilms.github.io/MagicPilot_Remote_Stick/#install)** in desktop Chrome, Edge or Firefox, connect the Stick with a USB data cable, click **Install on a connected Stick**, and pick its port. The installer reads the chip and writes the matching firmware. You don't need Python or PlatformIO. On a StickS3 with factory firmware, first hold the side reset button until the internal green LED flashes.
+
+The same images can be downloaded from [`docs/install/`](docs/install/). Each is a single file written at address `0x0`, for example with esptool:
+
+```sh
+esptool.py write_flash 0x0 MagicPilot_Remote_Stick-m5stick-s3.bin
+```
+
+These images replace the bootloader, partition table and settings area, so a saved camera pairing is cleared. Press **A** and pair again afterwards. Uploads through `flash.py` or PlatformIO keep the pairing.
+
 ## 🚀 Build and flash
 
 ### Automatic selection (recommended)
@@ -86,7 +98,15 @@ pio run -e m5stick-s3 -t upload
 
 Plain `pio run` / `pio run -t upload` still defaults to the original StickC; use the helper for automatic selection. ESP32 and ESP32-S3 require separate binaries, so detection must happen before building/uploading, not inside the firmware.
 
-To build both targets without flashing: `pio run -e m5stick-c -e m5stick-s3`. To test the uploader logic, run `python -m unittest discover -s tests -v` in PlatformIO's Python environment.
+To build both targets without flashing: `pio run -e m5stick-c -e m5stick-s3`. Every build also writes `.pio/build/<env>/firmware-merged.bin`, a single image for address `0x0` ([scripts/merge_firmware.py](scripts/merge_firmware.py)). To test the uploader logic, run `python -m unittest discover -s tests -v` in PlatformIO's Python environment.
+
+### Updating the browser installer
+
+```sh
+python3 build_installer.py
+```
+
+This builds both targets, copies the merged images to `docs/install/`, and writes `docs/install/manifest.json` with the version from `git describe`. Tag the release first so the installer shows a clean version, then commit `docs/install/` so GitHub Pages serves the new firmware.
 
 ### Arduino IDE (manual board selection)
 
