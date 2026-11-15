@@ -12,6 +12,8 @@
 
 A pocket-sized Bluetooth LE remote for the original M5StickC (80×160 screen, ESP32) and M5Stack StickS3 (135×240 screen, ESP32-S3). It shows the camera's **live timecode** and starts or stops **recording** with one press. Small sibling of [MagicPilot Remote](https://github.com/KenFilms/MagicPilot_Remote), whose Bluetooth code it is based on.
 
+**⚡ Easy install: [flash your Stick from the browser](https://kenfilms.github.io/MagicPilot_Remote_Stick/#install)**. No tools needed, just desktop Chrome, Edge or Firefox and a USB cable. [More install options](#-install-without-building)
+
 ![MagicPilot Remote Stick on the M5StickS3: buttons, ports and screen layout](images/MagicPilot_Remote_Stick_Layout.png)
 
 ## Supported hardware
